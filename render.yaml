@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: 45build-companion
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python companion.py
+    healthCheckPath: /health
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_USERNAME
+        value: companion
+      - key: APP_PASSWORD
+        sync: false
+      - key: SARVAM_API_KEY
+        sync: false
