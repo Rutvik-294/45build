@@ -24,13 +24,14 @@
     body {
       display: flex;
       flex-direction: column;
-      width: min(100%, 1040px);
+      position: relative;
+      width: min(100%, 1440px);
       height: 100vh;
       height: 100dvh;
       min-height: 560px;
       margin: 0 auto;
-      padding: clamp(16px, 3vw, 32px);
-      background: radial-gradient(ellipse at 50% -30%, #222536 0, #0d1016 58%);
+      padding: clamp(18px, 3vw, 36px);
+      background: radial-gradient(ellipse at 50% -42%, #25262b 0, #111113 45%, #101012 100%);
     }
 
     header {
@@ -38,25 +39,26 @@
       align-items: center;
       justify-content: space-between;
       gap: 24px;
-      padding: 0 0 22px;
-      border-bottom: 1px solid var(--border);
+      min-height: 54px;
+      padding: 0 0 18px;
+      border-bottom: 1px solid #262629;
     }
 
-    h1 { margin: 0; font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight: 650; letter-spacing: -.025em; }
+    h1 { margin: 0; font-size: 1.08rem; font-weight: 600; letter-spacing: -.025em; }
     .subtitle, small { color: var(--muted); }
     .subtitle { margin: 4px 0 0; font-size: .92rem; }
     .settings, .archive, .left-controls, .right-controls { display: flex; align-items: center; gap: 10px; }
-    .settings { flex-wrap: wrap; justify-content: flex-end; }
+    .settings { flex-wrap: wrap; justify-content: flex-end; padding: 6px; background: #19191b; border: 1px solid #242427; border-radius: 999px; }
 
     select, button, textarea { font: inherit; }
 
     select {
-      min-height: 42px;
-      padding: 8px 34px 8px 12px;
+      min-height: 38px;
+      padding: 6px 30px 6px 12px;
       color: inherit;
-      background: var(--surface-raised);
-      border: 1px solid var(--border);
-      border-radius: 10px;
+      background: #222225;
+      border: 1px solid #303034;
+      border-radius: 999px;
     }
 
     #messages {
@@ -83,52 +85,57 @@
 
     .welcome {
       max-width: 620px;
-      margin: clamp(40px, 10vh, 100px) auto;
+      margin: clamp(40px, 8vh, 80px) auto;
       color: #c9cfda;
       text-align: center;
     }
 
-    .welcome p:first-child { color: #f3f4f6; font-size: 1.2rem; }
-    .archive { flex-wrap: wrap; margin: 16px 0 0; }
+    .welcome p:first-child { color: #f3f4f6; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 600; letter-spacing: -.035em; }
+    .welcome p:last-child { max-width: 500px; margin: 8px auto 0; color: #a3a3aa; }
+    .archive { align-self: center; flex-wrap: wrap; margin: 14px 0 0; padding: 6px 10px; background: #171719; border: 1px solid #252528; border-radius: 999px; }
     .archive label { margin-right: 2px; }
 
     .composer {
-      padding-top: 18px;
-      border-top: 1px solid var(--border);
+      padding: 16px;
+      background: #1d1d1f;
+      border: 1px solid #35363b;
+      border-radius: 20px;
+      box-shadow: 0 0 36px rgb(65 97 220 / 12%);
     }
 
     textarea {
       display: block;
       width: 100%;
-      min-height: 82px;
+      min-height: 72px;
       max-height: 190px;
-      padding: 13px 15px;
+      padding: 8px 6px;
       color: inherit;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 13px;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
       resize: vertical;
     }
 
     textarea::placeholder { color: #7f8999; }
-    .controls { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 12px; }
+    .controls { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 8px; }
     .left-controls, .right-controls { flex-wrap: wrap; }
 
     button {
       min-height: 40px;
-      padding: 8px 14px;
+      padding: 8px 16px;
       color: #fff;
-      background: var(--accent);
+      background: #f1f1f2;
+      color: #111114;
       border: 1px solid transparent;
       border-radius: 10px;
       cursor: pointer;
       transition: background-color 140ms ease, border-color 140ms ease, transform 140ms ease;
     }
 
-    button:hover:not(:disabled) { background: var(--accent-hover); }
+    button:hover:not(:disabled) { background: #d8d8dc; }
     button:active:not(:disabled) { transform: translateY(1px); }
-    button.secondary { color: #dce1e9; background: var(--surface-soft); border-color: var(--border); }
-    button.secondary:hover:not(:disabled) { background: #2b3342; }
+    button.secondary { color: #d8d8dd; background: #29292d; border-color: #39393e; }
+    button.secondary:hover:not(:disabled) { background: #343439; }
     button:disabled { opacity: .55; cursor: wait; }
 
     label { color: #c5cbd4; font-size: .9rem; }
@@ -137,15 +144,52 @@
     small { display: block; font-size: .78rem; }
     audio { display: none; }
 
+    body:has(#welcome) #messages {
+      position: absolute;
+      top: 41%;
+      left: 50%;
+      display: grid;
+      width: 100%;
+      height: auto;
+      min-height: 0;
+      padding: 0 20px;
+      overflow: visible;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+    }
+
+    body:has(#welcome) .welcome { margin: 0 auto; pointer-events: auto; }
+
+    body:has(#welcome) .composer {
+      position: absolute;
+      top: 49%;
+      left: 50%;
+      width: min(900px, calc(100% - 48px));
+      transform: translateX(-50%);
+    }
+
+    body:has(#welcome) .composer small {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      width: min(720px, calc(100vw - 32px));
+      text-align: center;
+      transform: translateX(-50%);
+    }
+
     :focus-visible { outline: 2px solid #f09aad; outline-offset: 3px; }
 
     @media (max-width: 680px) {
       body { min-height: 0; padding: 16px; }
-      header { align-items: flex-start; flex-direction: column; gap: 16px; padding-bottom: 18px; }
-      .settings { justify-content: flex-start; }
+      header { align-items: flex-start; flex-direction: column; gap: 14px; padding-bottom: 16px; }
+      .settings { justify-content: flex-start; border-radius: 16px; }
       .bubble { max-width: 90%; }
       .controls { align-items: flex-start; flex-direction: column; }
       .left-controls { gap: 8px; }
+      body:has(#welcome) #messages { top: 38%; }
+      body:has(#welcome) .composer { top: 48%; width: calc(100% - 32px); padding: 12px; }
+      body:has(#welcome) .welcome p:last-child { font-size: .9rem; }
+      body:has(#welcome) .composer small { bottom: 12px; font-size: .72rem; }
     }
 
     @media (max-width: 420px) {
