@@ -76,6 +76,15 @@
       scrollbar-width: thin;
     }
 
+    body:not(:has(#welcome)) #messages {
+      background-image:
+        radial-gradient(ellipse at 15% 12%, rgb(81 158 226 / 9%), transparent 36%),
+        radial-gradient(ellipse at 88% 82%, rgb(65 127 190 / 8%), transparent 34%),
+        radial-gradient(circle, rgb(176 218 255 / 12%) .7px, transparent .9px);
+      background-size: auto, auto, 28px 28px;
+      border-radius: 20px;
+    }
+
     .bubble {
       max-width: min(76%, 680px);
       margin: 0 0 14px;
